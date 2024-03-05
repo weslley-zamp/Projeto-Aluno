@@ -11,6 +11,22 @@ class RegisterStudent extends Student
         $this->students[] = new Student(2, 'Zampier', '2024032', 'Engenheiro', '1234');
     }
 
+    public function authenticate($registration, $password){
+        foreach($this->students as $user){
+            if($user->registration === $registration && $user->verifyPassword($password)){
+                $_SESSION['authenticate'] = 'YES';
+                $_SESSION['id'] = $user->id;
+                $_SESSION['course'] = $user->course;
+                header('C:/xampp/htdocs/Projeto Aluno/src/view/home.php');
+                exit;
+            }
+        }
+        $_SESSION['authenticate'] = 'NO';
+        header('Location: index.php?login=erro');
+        exit;    
+    }
+
+
     public function addStudent(Student $student)
     {
         try {
