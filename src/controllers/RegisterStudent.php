@@ -1,7 +1,7 @@
 <?php
 require_once('../models/student.php');
 
-class RegisterStudent
+class RegisterStudent extends Student
 {
     private $students = [];
 

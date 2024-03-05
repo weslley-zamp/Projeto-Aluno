@@ -1,10 +1,10 @@
 <?php
 class Student{
-    private $id;
-    private $name;
-    private $registration;
-    private $course;
-    private $password;
+   protected $id;
+   protected $name;
+   protected $registration;
+   protected $course;
+   protected $password;
 
     public function __construct($id,$name,$registration,$course,$password){
         $this->id = $id;
