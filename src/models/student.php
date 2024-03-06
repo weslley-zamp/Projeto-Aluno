@@ -5,13 +5,15 @@ class Student{
    protected $registration;
    protected $course;
    protected $password;
+   protected $profile_id;
 
-    public function __construct($id,$name,$registration,$course,$password){
+    public function __construct($id,$name,$registration,$course,$password,$profile_id){
         $this->id = $id;
         $this->name = $name;
         $this->registration = $registration;
         $this->course = $course;
         $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->profile_id = $profile_id;
     }
     //Função Getter
     public function getId($id){
@@ -28,6 +30,9 @@ class Student{
     }
     public function getPassword($password){
         return $this->password = $password;
+    }
+    public function getProfile($profile_id){
+        return $this->profile_id = $profile_id;
     }
 
     //Public setter

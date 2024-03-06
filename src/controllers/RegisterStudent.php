@@ -1,5 +1,5 @@
 <?php
-require_once('../models/student.php');
+require_once 'C:\xampp\htdocs\Projeto Aluno\src\models\student.php';
 
 class RegisterStudent extends Student
 {
@@ -7,8 +7,8 @@ class RegisterStudent extends Student
 
     public function __construct()
     {
-        $this->students[] = new Student(1, 'Braio', 2024031, 'Moda', '1234');
-        $this->students[] = new Student(2, 'Zampier', 2024032, 'Engenheiro', '1234');
+        $this->students[] = new Student(1, 'Braio', '2024031', 'Moda', '1234',1);
+        $this->students[] = new Student(2, 'Zampier', '2024032', 'Engenheiro', '1234',2);
     }
 
     public function authenticate($registration, $password){
@@ -17,7 +17,7 @@ class RegisterStudent extends Student
                 $_SESSION['authenticate'] = 'YES';
                 $_SESSION['id'] = $user->id;
                 $_SESSION['course'] = $user->course;
-                header('src\view\home.php');
+                header('C:/xampp/htdocs/Projeto Aluno/src/view/home.php');
                 exit;
             }
         }
