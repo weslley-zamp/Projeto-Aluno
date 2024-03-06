@@ -3,7 +3,7 @@ session_start();
 
 try {
     if (isset($_POST['registration'], $_POST['password'])) {
-        require_once 'C:/xampp/htdocs/Projeto Aluno/src/controllers/RegisterStudent.php';
+        require_once 'C:/xampp/htdocs/Projeto-Aluno/src/controllers/RegisterStudent.php';
 
         $registerStudent = new RegisterStudent();
         $registerStudent->authenticate($_POST['registration'], $_POST['password']);

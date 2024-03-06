@@ -7,18 +7,19 @@ class RegisterStudent extends Student
 
     public function __construct()
     {
-        $this->students[] = new Student(1, 'Braio', '2024031', 'Moda', '1234',1);
-        $this->students[] = new Student(2, 'Zampier', '2024032', 'Engenheiro', '1234',2);
+        $this->students[] = new Student(1, 'Braio', '2024031', 'Moda', '1234', 1);
+        $this->students[] = new Student(2, 'Zampier', '2024032', 'Engenheiro', '1234', 2);
     }
 
-    public function authenticate($registration, $password){
+    public function authenticate($registration, $password)
+    {
         if (isset($_SESSION['authenticate']) && $_SESSION['authenticate'] == 'YES') {
             header('Location: src\view\home.php');
             exit;
         }
 
-        foreach($this->students as $user){
-            if($user->registration === $registration && $user->verifyPassword($password)){
+        foreach ($this->students as $user) {
+            if ($user->registration === $registration && $user->verifyPassword($password)) {
                 $_SESSION['authenticate'] = 'YES';
                 $_SESSION['id'] = $user->id;
                 $_SESSION['profile_Id'] = $user->profile_id;
@@ -28,16 +29,17 @@ class RegisterStudent extends Student
         }
         $_SESSION['authenticate'] = 'NO';
         header('Location: index.php?login=erro');
-        exit;    
+        exit;
     }
 
-    public function addStudent(Student $student)
+    public function addStudent($registration, $course, $name, $password)
     {
         foreach ($this->students as $user) {
-            if ($user->registration == $student->registration) {
+            if ($user->registration == $registration) {
                 return new Exception('Estudante já cadastrado com essa matrícula.');
             }
         }
+        $student = new Student(1, $name, $registration, $course, $password, 10);
         $this->students[] = $student;
         return true;
     }
