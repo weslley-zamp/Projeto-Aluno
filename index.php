@@ -8,7 +8,7 @@
     </head>
     <body>
         <div>
-            <form action="valida_login.php" method="post">
+            <form action="validate_login.php" method="post">
                 <input name="registration" type="number" placeholder="Sua matricula:">
                 <input name="password" type="password" placeholder="Senha:">
                 <button type="submit">
