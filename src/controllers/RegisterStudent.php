@@ -12,12 +12,17 @@ class RegisterStudent extends Student
     }
 
     public function authenticate($registration, $password){
+        if (isset($_SESSION['authenticate']) && $_SESSION['authenticate'] == 'YES') {
+            header('Location: src\view\home.php');
+            exit;
+        }
+
         foreach($this->students as $user){
             if($user->registration === $registration && $user->verifyPassword($password)){
                 $_SESSION['authenticate'] = 'YES';
                 $_SESSION['id'] = $user->id;
-                $_SESSION['course'] = $user->course;
-                header('C:/xampp/htdocs/Projeto Aluno/src/view/home.php');
+                $_SESSION['profile_Id'] = $user->profile_id;
+                header('Location: home.php');
                 exit;
             }
         }
@@ -26,19 +31,15 @@ class RegisterStudent extends Student
         exit;    
     }
 
-
     public function addStudent(Student $student)
     {
-        try {
-            foreach ($this->students as $user) {
-                if ($user->registration == $student->registration) {
-                    throw new Exception('Estudante já cadastrado com essa matrícula.');
-                }
+        foreach ($this->students as $user) {
+            if ($user->registration == $student->registration) {
+                return new Exception('Estudante já cadastrado com essa matrícula.');
             }
-            $this->students[] = $student;
-        } catch (Exception $e) {
-            return $e;
         }
+        $this->students[] = $student;
+        return true;
     }
 
     public function getStudents()
